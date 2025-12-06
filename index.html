@@ -436,6 +436,121 @@
                 </ul>
             </div>
         </div>
+        <section id="pedido-personalizado">
+    <div class="section-sub">Encomenda exclusiva</div>
+    <h2 class="section-title">Pedido Personalizado</h2>
+    <div class="two-columns">
+        <div>
+            <p>
+                Crie velas <strong>100% personalizadas</strong> para o seu evento especial, negócio ou presente único.
+            </p>
+            <p>
+                Escolha embalagem, essência, quantidade e detalhes. Receberá um <strong>orçamento detalhado por email em 24h</strong>.
+            </p>
+            <div class="highlight">
+                <strong>Preços estimados:</strong> Essencial €12-18 | Plus €18-25 | Premium €25-35 (por unidade)
+            </div>
+        </div>
+        <div class="card-soft">
+            <div class="mini-title">Em até 48h receberá:</div>
+            <ul>
+                <li>Orçamento personalizado no Salesforce</li>
+                <li>Mockups das suas velas</li>
+                <li>Opções de pagamento MB Way/Multibanco</li>
+                <li>Entrega em todo Portugal</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="form-container" style="background: white; border-radius: 1.5rem; padding: 2.5rem; margin-top: 2rem; box-shadow: 0 20px 60px rgba(0,0,0,0.08);">
+        <form id="customOrderForm" class="custom-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Nome *</label>
+                    <input type="text" name="nome" required>
+                </div>
+                <div class="form-group">
+                    <label>Email *</label>
+                    <input type="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Telefone</label>
+                    <input type="tel" name="telefone">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Tipo de Embalagem *</label>
+                    <select name="embalagem" required>
+                        <option value="">Selecione...</option>
+                        <option value="essencial">Essencial (€12-18) - Frasco simples + etiqueta básica</option>
+                        <option value="plus">Plus (€18-25) - Frasco premium + embalagem personalizada</option>
+                        <option value="premium">Premium (€25-35) - Caixa temática + acessórios + ribbon</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Quantidade *</label>
+                    <select name="quantidade" required>
+                        <option value="">Selecione...</option>
+                        <option value="10">10 unidades</option>
+                        <option value="25">25 unidades</option>
+                        <option value="50">50 unidades</option>
+                        <option value="100">100+ unidades (orçamento especial)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Essência Principal *</label>
+                    <select name="essencia" id="essenciaSelect" required>
+                        <option value="">Escolha o aroma base...</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Segunda Essência (opcional)</label>
+                    <select name="essencia2">
+                        <option value="">Apenas uma essência</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group full-width">
+                <label>Descrição do Evento/Necessidade *</label>
+                <textarea name="descricao" rows="4" placeholder="Ex: 'Casamento rústico com 50 convidados, tema lavanda e madeira. Preciso de velas para mesa principal e lembrancinhas.' ou 'Barbearia masculina, aroma amadeirado forte para ambiente.'" required></textarea>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Cores preferidas</label>
+                    <input type="text" name="cores" placeholder="Ex: branco, dourado, azul marinho">
+                </div>
+                <div class="form-group">
+                    <label>Data do evento</label>
+                    <input type="date" name="data_evento">
+                </div>
+            </div>
+
+            <div class="form-group full-width">
+                <label>Arquivos/Referências (fotos, moodboards)</label>
+                <input type="file" name="arquivos" multiple accept="image/*,.pdf">
+                <small>Envie imagens de inspiração ou exemplos que goste</small>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn-outline" onclick="calculateEstimate()">Calcular Estimativa</button>
+                <button type="submit" class="btn-primary">Gerar Orçamento Personalizado</button>
+            </div>
+        </form>
+
+        <div id="estimatePreview" style="margin-top: 1.5rem; padding: 1.5rem; background: #f8f9fa; border-radius: 1rem; display: none;">
+            <h3>Estimativa Rápida</h3>
+            <div id="estimateDetails"></div>
+        </div>
+    </div>
+</div>
+
     </section>
     <section id="negocios">
     <div class="section-sub">Para empresas</div>
@@ -525,6 +640,7 @@
 
 </body>
 </html>
+
 
 
 
