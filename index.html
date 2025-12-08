@@ -344,24 +344,7 @@
 
     </style>
 </head>
-    <script>
-document.querySelectorAll('.galeria-filter').forEach(btn => {
-    btn.addEventListener('click', () => {
-        document.querySelector('.galeria-filter.active').classList.remove('active');
-        btn.classList.add('active');
-
-        const filter = btn.dataset.filter;
-        document.querySelectorAll('.galeria-item').forEach(item => {
-            const cat = item.dataset.category;
-            if (filter === 'all' || cat === filter) {
-                item.style.display = '';
-            } else {
-                item.style.display = 'none';
-            }
-        });
-    });
-});
-</script>
+   </script>
 <body>
 
    <header>
@@ -770,6 +753,7 @@ document.querySelectorAll('.galeria-filter').forEach(btn => {
 
 </body>
 </html>
+
 
 
 
