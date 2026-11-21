@@ -8,7 +8,7 @@
     <meta name="theme-color" content="#b0654b">
     <meta property="og:title" content="Aroma Lume | Velas Aromáticas Artesanais em Viseu">
     <meta property="og:description" content="Velas artesanais com cera vegetal, feitas à mão em Viseu. Personalizações para eventos e negócios.">
-    <meta property="og:image" content="https://www.aromalume.pt/WhatsApp%20Image%202025-12-08%20at%2012.46.47.jpeg">
+    <meta property="og:image" content="https://www.aromalume.pt/img/luminho-se-viseu.jpg">
     <meta property="og:url" content="https://www.aromalume.pt/">
     <link rel="icon" type="image/png" href="1000007280-removebg-preview.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,7 +42,7 @@
             font-size: 1.02rem;
         }
 
-        img { max-width: 100%; display: block; }
+        img { max-width: 100%; height: auto; display: block; }
         p + p { margin-top: 0.9rem; }
         ul { padding-left: 1.2rem; }
         li + li { margin-top: 0.4rem; }
@@ -317,7 +317,8 @@
             flex-shrink: 0;
         }
 
-        .form-header .wa-icon svg { width: 1.6rem; height: 1.6rem; fill: #fff; }
+        .form-header .wa-icon { width: 3.6rem; height: 3.6rem; border: 3px solid var(--whatsapp); background: #fff; overflow: hidden; }
+        .form-header .wa-icon img { width: 100%; height: 100%; object-fit: cover; }
         .form-header h3 { font-size: 1.6rem; color: #4d332a; }
         .form-header p { font-size: 0.9rem; color: var(--muted); }
 
@@ -369,6 +370,33 @@
 
         .form-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; }
         .form-actions small { color: var(--muted); font-size: 0.82rem; }
+
+        /* ---------- Luminho ---------- */
+        .luminho {
+            display: grid;
+            grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+            gap: 3rem;
+            align-items: center;
+        }
+        .luminho-photo img {
+            width: 100%;
+            border-radius: 1.8rem;
+            box-shadow: 0 28px 60px rgba(59, 42, 38, 0.18);
+        }
+        .luminho-sign {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 1.25rem;
+            color: var(--primary);
+            margin-top: 1.2rem;
+        }
+        .catalogo-banner {
+            margin-top: 2.6rem;
+            border-radius: 1.8rem;
+            overflow: hidden;
+            box-shadow: 0 24px 56px rgba(59, 42, 38, 0.14);
+        }
+        .catalogo-banner img { width: 100%; }
 
         /* ---------- Gallery ---------- */
         .galeria-grid {
@@ -427,21 +455,63 @@
         /* ---------- Floating WhatsApp ---------- */
         .wa-float {
             position: fixed;
-            right: 1.3rem;
-            bottom: 1.3rem;
+            right: 1.2rem;
+            bottom: 1.2rem;
             z-index: 60;
-            width: 3.6rem;
-            height: 3.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+        }
+        .wa-float .wa-bubble {
+            background: #fff;
+            color: var(--text);
+            font-size: 0.85rem;
+            line-height: 1.3;
+            padding: 0.55rem 0.9rem;
+            border-radius: 1rem 1rem 0.2rem 1rem;
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.15);
+            max-width: 12rem;
+            opacity: 0;
+            transform: translateY(6px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            pointer-events: none;
+        }
+        .wa-float .wa-bubble strong { color: var(--primary); }
+        .wa-float.greet .wa-bubble, .wa-float:hover .wa-bubble { opacity: 1; transform: none; }
+        .wa-float .wa-avatar {
+            position: relative;
+            width: 4.2rem;
+            height: 4.2rem;
+            flex-shrink: 0;
+            border-radius: 50%;
+            border: 3px solid var(--whatsapp);
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25);
+            background: #fff;
+            transition: transform 0.2s ease;
+            animation: luminho-glow 3s ease-in-out infinite;
+        }
+        .wa-float:hover .wa-avatar { transform: scale(1.07); }
+        .wa-float .wa-avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+        .wa-float .wa-badge {
+            position: absolute;
+            right: -4px;
+            bottom: -4px;
+            width: 1.6rem;
+            height: 1.6rem;
             border-radius: 50%;
             background: var(--whatsapp);
+            border: 2px solid #fff;
             display: grid;
             place-items: center;
-            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
-            transition: transform 0.2s ease;
         }
-
-        .wa-float:hover { transform: scale(1.08); }
-        .wa-float svg { width: 1.9rem; height: 1.9rem; fill: #fff; }
+        .wa-float .wa-badge svg { width: 0.95rem; height: 0.95rem; fill: #fff; }
+        @keyframes luminho-glow {
+            0%, 100% { box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25), 0 0 0 0 rgba(233, 166, 107, 0); }
+            50% { box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25), 0 0 22px 4px rgba(233, 166, 107, 0.55); }
+        }
+        @media (prefers-reduced-motion: reduce) { .wa-float .wa-avatar { animation: none; } }
+        @media (max-width: 640px) { .wa-float .wa-bubble { display: none; } .wa-float .wa-avatar { width: 3.7rem; height: 3.7rem; } }
 
         /* ---------- Reveal ---------- */
         .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
@@ -456,6 +526,7 @@
         @media (max-width: 960px) {
             .hero-inner, .two-columns { grid-template-columns: 1fr; gap: 2.2rem; }
             .hero-photo { max-width: 460px; justify-self: start; }
+            .luminho { grid-template-columns: 1fr; gap: 2rem; }
             .hero-quote { left: auto; right: -0.6rem; bottom: 1.2rem; }
             .grid-3 { grid-template-columns: 1fr 1fr; }
             .galeria-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -499,6 +570,7 @@
         </a>
         <nav aria-label="Navegação principal">
             <a href="#quem-somos">Quem Somos</a>
+            <a href="#luminho">Luminho</a>
             <a href="#feiras">Feiras de Época</a>
             <a href="#onde-encontrar">Loja Online</a>
             <a href="#personalizacoes">Personalizações</a>
@@ -571,7 +643,30 @@
         </div>
     </section>
 
-    <section id="feiras" class="alt">
+    <section id="luminho" class="alt">
+        <div class="wrap luminho reveal">
+            <div class="luminho-photo">
+                <img src="img/luminho-se-viseu.jpg" alt="O Luminho, mascote da Aroma Lume, sentado junto às velas em frente à Sé de Viseu." loading="lazy" width="1380" height="752">
+            </div>
+            <div>
+                <div class="section-sub">A nossa mascote</div>
+                <h2 class="section-title">Olá! Sou o Luminho</h2>
+                <p>
+                    Sou a pequena chama que vive no ateliê da Aroma Lume, em Viseu. É aqui que ajudo a criar velas artesanais com cera de soja e pavios de algodão, feitas à mão, uma a uma.
+                </p>
+                <p>
+                    Gosto de velas simples e honestas, sem parafinas — para que possam sentir o aroma autêntico e o brilho puro da tradição em casa, num presente ou no vosso evento especial.
+                </p>
+                <p class="luminho-sign">— Luminho, de Viseu com luz ✨</p>
+                <div class="cta-group" style="margin-top: 1.6rem;">
+                    <a class="btn btn-whatsapp wa-link" data-msg="Olá Luminho! Gostaria de saber mais sobre as velas Aroma Lume." href="https://wa.me/351927873574" target="_blank" rel="noopener">Falar com o Luminho</a>
+                    <a href="loja/" class="btn btn-outline">Ver a loja</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="feiras">
         <div class="wrap reveal">
             <div class="section-sub">Onde encontrar</div>
             <h2 class="section-title">Feiras de Época</h2>
@@ -610,7 +705,7 @@
         </div>
     </section>
 
-    <section id="onde-encontrar">
+    <section id="onde-encontrar" class="alt">
         <div class="wrap two-columns reveal">
             <div>
                 <div class="section-sub">Loja online</div>
@@ -638,7 +733,7 @@
         </div>
     </section>
 
-    <section id="personalizacoes" class="alt">
+    <section id="personalizacoes">
         <div class="wrap reveal">
             <div class="section-sub">Para eventos</div>
             <h2 class="section-title">Personalizações</h2>
@@ -664,10 +759,13 @@
                     </ul>
                 </div>
             </div>
+            <figure class="catalogo-banner">
+                <img src="img/luminho-catalogo.jpg" alt="O Luminho a ler o catálogo de encomendas personalizadas Aroma Lume no ateliê em Viseu." loading="lazy" width="1024" height="558">
+            </figure>
         </div>
     </section>
 
-    <section id="pedido-personalizado">
+    <section id="pedido-personalizado" class="alt">
         <div class="wrap reveal">
             <div class="section-sub">Encomenda exclusiva</div>
             <h2 class="section-title">Pedido Personalizado</h2>
@@ -699,9 +797,7 @@
 
             <div class="form-container">
                 <div class="form-header">
-                    <div class="wa-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35zM12.04 21.5h-.01a9.4 9.4 0 0 1-4.79-1.31l-.34-.2-3.56.93.95-3.47-.22-.36a9.38 9.38 0 0 1-1.44-5.01c0-5.19 4.23-9.41 9.42-9.41a9.36 9.36 0 0 1 6.66 2.76 9.35 9.35 0 0 1 2.75 6.66c0 5.19-4.23 9.41-9.42 9.41zm8.02-17.43A11.27 11.27 0 0 0 12.04.75C5.79.75.7 5.83.7 12.08c0 2 .52 3.95 1.52 5.67L.6 23.25l5.63-1.48a11.3 11.3 0 0 0 5.41 1.38h.01c6.25 0 11.33-5.08 11.34-11.33 0-3.03-1.18-5.87-3.32-8.01z"/></svg>
-                    </div>
+                    <div class="wa-icon"><img src="img/luminho-avatar.jpg" alt="Luminho" width="56" height="56"></div>
                     <div>
                         <h3>Peça o seu orçamento</h3>
                         <p>Preencha os detalhes — a mensagem abre pronta no WhatsApp, é só enviar.</p>
@@ -801,7 +897,7 @@
         </div>
     </section>
 
-    <section id="negocios" class="alt">
+    <section id="negocios">
         <div class="wrap reveal">
             <div class="section-sub">Para empresas</div>
             <h2 class="section-title">Velas para Negócios</h2>
@@ -844,7 +940,7 @@
         </div>
     </section>
 
-    <section id="datas-sazonais">
+    <section id="datas-sazonais" class="alt">
         <div class="wrap two-columns reveal">
             <div>
                 <div class="section-sub">Presentes com significado</div>
@@ -871,7 +967,7 @@
         </div>
     </section>
 
-    <section id="galeria" class="alt">
+    <section id="galeria">
         <div class="wrap reveal">
             <div class="section-sub">Momentos Aroma Lume</div>
             <h2 class="section-title">Galeria de Fotos</h2>
@@ -924,8 +1020,12 @@
     </div>
 </footer>
 
-<a class="wa-float wa-link" data-msg="Olá Aroma Lume! Gostaria de saber mais sobre as vossas velas." href="https://wa.me/351927873574" target="_blank" rel="noopener" aria-label="Falar connosco no WhatsApp">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35zM12.04 21.5h-.01a9.4 9.4 0 0 1-4.79-1.31l-.34-.2-3.56.93.95-3.47-.22-.36a9.38 9.38 0 0 1-1.44-5.01c0-5.19 4.23-9.41 9.42-9.41a9.36 9.36 0 0 1 6.66 2.76 9.35 9.35 0 0 1 2.75 6.66c0 5.19-4.23 9.41-9.42 9.41zm8.02-17.43A11.27 11.27 0 0 0 12.04.75C5.79.75.7 5.83.7 12.08c0 2 .52 3.95 1.52 5.67L.6 23.25l5.63-1.48a11.3 11.3 0 0 0 5.41 1.38h.01c6.25 0 11.33-5.08 11.34-11.33 0-3.03-1.18-5.87-3.32-8.01z"/></svg>
+<a class="wa-float wa-link" data-msg="Olá Aroma Lume! Gostaria de saber mais sobre as vossas velas." href="https://wa.me/351927873574" target="_blank" rel="noopener" aria-label="Falar com o Luminho no WhatsApp">
+    <span class="wa-bubble">Olá! Sou o <strong>Luminho</strong> 👋<br>Fale connosco no WhatsApp.</span>
+    <span class="wa-avatar">
+        <img src="img/luminho-avatar.jpg" alt="Luminho, a mascote da Aroma Lume" width="64" height="64">
+        <span class="wa-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35zM12.04 21.5h-.01a9.4 9.4 0 0 1-4.79-1.31l-.34-.2-3.56.93.95-3.47-.22-.36a9.38 9.38 0 0 1-1.44-5.01c0-5.19 4.23-9.41 9.42-9.41a9.36 9.36 0 0 1 6.66 2.76 9.35 9.35 0 0 1 2.75 6.66c0 5.19-4.23 9.41-9.42 9.41zm8.02-17.43A11.27 11.27 0 0 0 12.04.75C5.79.75.7 5.83.7 12.08c0 2 .52 3.95 1.52 5.67L.6 23.25l5.63-1.48a11.3 11.3 0 0 0 5.41 1.38h.01c6.25 0 11.33-5.08 11.34-11.33 0-3.03-1.18-5.87-3.32-8.01z"/></svg></span>
+    </span>
 </a>
 
 <script>
@@ -949,6 +1049,14 @@
             var msg = a.getAttribute("data-msg");
             if (msg) { a.href = waUrl(msg); }
         });
+
+
+        // Luminho cumprimenta ao fim de alguns segundos
+        var waFloat = document.querySelector(".wa-float");
+        if (waFloat) {
+            setTimeout(function () { waFloat.classList.add("greet"); }, 2500);
+            setTimeout(function () { waFloat.classList.remove("greet"); }, 9000);
+        }
 
         // Formulário -> WhatsApp
         var form = document.getElementById("customOrderForm");
