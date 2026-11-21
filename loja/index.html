@@ -198,6 +198,8 @@
             color: #7a4d2e;
         }
 
+        .new-tag { left: auto; right: 0.8rem; background: var(--primary); color: #fff; }
+
         .product-info {
             padding: 1.2rem 1.3rem 1.4rem;
             display: flex;
@@ -641,18 +643,29 @@ const CATEGORIAS = ["Kits", "Velas", "Bubbles"];
 /* tiers: preço por unidade conforme a quantidade total desse produto no carrinho
    [quantidade mínima, preço por unidade] */
 const products = [
-    { id: 1, name: "Kit Pétala Serena", price: 12.50, category: "Kits", desc: "", image: "" },
-    { id: 2, name: "Kit Momento Luz", price: 17.00, category: "Kits", desc: "", image: "" },
+    { id: 11, name: "Vela Mini Afeto", price: 6.00, category: "Velas", isNew: true,
+      desc: "Mini vela com etiqueta personalizada, ideal para lembranças.", image: "fotos/vela-mini-afeto.jpg" },
+    { id: 12, name: "Kit Natal", price: 8.00, category: "Kits", isNew: true,
+      desc: "Caixa com velas decorativas de Natal e laço vermelho.", image: "fotos/kit-natal.jpg" },
+    { id: 1, name: "Kit Pétala Serena", price: 12.50, category: "Kits",
+      desc: "Vela flor num bowl de pétalas com base decorativa.", image: "fotos/kit-petala-serena.jpg" },
+    { id: 2, name: "Kit Momento Luz", price: 17.00, category: "Kits",
+      desc: "Vela coração com pavio de madeira e duas velas flor, em base decorativa.", image: "fotos/kit-momento-luz.jpg" },
     { id: 3, name: "Kit Páscoa", price: 18.00, category: "Kits", desc: "", image: "" },
-    { id: 4, name: "Caixa 4 Latas", price: 14.90, category: "Kits", desc: "Quatro velas em lata numa caixa pronta para oferecer.",
-      image: "../WhatsApp Image 2025-12-08 at 12.43.52.jpeg" },
-    { id: 5, name: "Vela Vidro (70 g)", price: 11.50, category: "Velas", desc: "", image: "" },
-    { id: 6, name: "Lata", price: 3.20, category: "Velas", desc: "Vela em lata.", image: "../WhatsApp Image 2025-12-08 at 12.43.52.jpeg" },
-    { id: 7, name: "Ursinho", price: 4.50, category: "Velas", desc: "Ursinho em cera vegetal.", image: "ursinho-encantado.jpeg" },
-    { id: 8, name: "Ursinhos Gémeos", price: 7.00, category: "Velas", desc: "Dois ursinhos em cera vegetal.", image: "" },
-    { id: 9, name: "Vela Bubble (40 g) – Papel Fotográfico", price: 4.50, category: "Bubbles", desc: "", image: "",
+    { id: 4, name: "Caixa 4 Latas", price: 14.90, category: "Kits",
+      desc: "Quatro velas em lata numa caixa pronta para oferecer.", image: "fotos/caixa-4-latas.jpg" },
+    { id: 5, name: "Vela Vidro (70 g)", price: 11.50, category: "Velas",
+      desc: "Frasco de vidro com rolha de cortiça e etiqueta personalizada.", image: "fotos/vela-vidro.jpg" },
+    { id: 6, name: "Lata", price: 3.20, category: "Velas", desc: "Vela em lata com tampa ilustrada.", image: "fotos/lata.jpg" },
+    { id: 7, name: "Ursinho", price: 4.50, category: "Velas",
+      desc: "Ursinho em cera vegetal, com cartão e laço.", image: "fotos/ursinho.jpg" },
+    { id: 8, name: "Ursinhos Gémeos", price: 7.00, category: "Velas",
+      desc: "Dois ursinhos em cera vegetal, com cartão personalizado.", image: "fotos/ursinhos-gemeos.jpg" },
+    { id: 9, name: "Vela Bubble (40 g) – Papel Fotográfico", price: 4.50, category: "Bubbles",
+      desc: "Bubble em embalagem de papel fotográfico personalizada.", image: "fotos/bubble-papel-fotografico.jpg",
       tiers: [[1, 4.50], [15, 3.70], [31, 3.40], [51, 3.10]] },
-    { id: 10, name: "Vela Bubble – Caixa de Acetato", price: 6.00, category: "Bubbles", desc: "", image: "",
+    { id: 10, name: "Vela Bubble – Caixa de Acetato", price: 6.00, category: "Bubbles",
+      desc: "Bubble em caixa de acetato com laço de cetim.", image: "fotos/bubble-acetato.jpg",
       tiers: [[1, 6.00], [15, 5.60], [31, 5.20], [51, 4.80]] }
 ];
 
@@ -725,7 +738,7 @@ function renderProducts() {
         <article class="product-card">
             <div class="product-image">
                 ${imgHtml(p)}
-                <span class="product-tag">${esc(p.category)}</span>
+                <span class="product-tag">${esc(p.category)}</span>${p.isNew ? '<span class="product-tag new-tag">Novo</span>' : ""}
             </div>
             <div class="product-info">
                 <h3 class="product-title">${esc(p.name)}</h3>
