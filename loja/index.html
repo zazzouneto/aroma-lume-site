@@ -491,6 +491,10 @@
         .footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
         footer a { color: var(--primary); text-decoration: none; font-weight: 500; }
 
+        .credit { width: 100%; text-align: center; font-size: 0.78rem; color: var(--muted); margin-top: 1.2rem; padding-top: 1rem; border-top: 1px solid rgba(176, 101, 75, 0.15); letter-spacing: 0.04em; }
+        .credit a { color: var(--muted); font-weight: 500; text-decoration: none; border-bottom: 1px dotted currentColor; }
+        .credit a:hover { color: var(--primary); }
+
         @media (max-width: 900px) {
             .products-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         }
@@ -554,6 +558,7 @@
     <div class="wrap footer-inner">
         <div>© <span id="year"></span> Aroma Lume · Viseu, Portugal · Entrega em todo o país</div>
         <div><a id="footerWa" href="https://wa.me/351927873574" target="_blank" rel="noopener">WhatsApp: +351 927 873 574</a></div>
+        <div class="credit">By <a href="https://zazzouneto.github.io/impact-force-site/" target="_blank" rel="noopener">Impact Force</a> · Evolução tecnológica para o seu negócio</div>
     </div>
 </footer>
 
