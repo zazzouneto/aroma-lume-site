@@ -371,6 +371,89 @@
         .form-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; }
         .form-actions small { color: var(--muted); font-size: 0.82rem; }
 
+        /* ---------- Natal: barra de aviso ---------- */
+        .xmas-bar {
+            background: linear-gradient(90deg, #2f5d4a, #3b6b55 50%, #2f5d4a);
+            color: #fff;
+            font-size: 0.88rem;
+            position: relative;
+            z-index: 55;
+        }
+        .xmas-bar-inner {
+            display: flex; align-items: center; justify-content: center; gap: 0.8rem;
+            padding: 0.55rem 2.6rem; text-align: center; flex-wrap: wrap;
+        }
+        .xmas-bar a { color: #ffe2b8; font-weight: 500; text-decoration: none; white-space: nowrap; }
+        .xmas-bar a:hover { text-decoration: underline; }
+        .xmas-bar-close {
+            position: absolute; right: 0.6rem; top: 50%; transform: translateY(-50%);
+            background: none; border: 0; color: rgba(255,255,255,0.8); font-size: 1.3rem; line-height: 1;
+            width: 2rem; height: 2rem; cursor: pointer; border-radius: 50%;
+        }
+        .xmas-bar-close:hover { background: rgba(255,255,255,0.12); color: #fff; }
+        .xmas-hidden { display: none !important; }
+        @media (max-width: 600px) { .xmas-bar { font-size: 0.8rem; } .xmas-bar-inner { padding: 0.5rem 2.4rem 0.5rem 0.9rem; gap: 0.3rem 0.6rem; } }
+
+        /* ---------- Natal: banner principal ---------- */
+        .xmas {
+            padding: 0;
+            background: radial-gradient(ellipse at 80% 20%, rgba(233,166,107,0.25), transparent 55%), linear-gradient(150deg, #2f5d4a, #24493a);
+            color: #f4efe6;
+            position: relative;
+            overflow: hidden;
+        }
+        .xmas::before {
+            content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0.55;
+            background-image:
+                radial-gradient(2px 2px at 10% 20%, #fff 50%, transparent 51%),
+                radial-gradient(1.5px 1.5px at 30% 70%, #fff 50%, transparent 51%),
+                radial-gradient(2px 2px at 55% 30%, #fff 50%, transparent 51%),
+                radial-gradient(1.5px 1.5px at 75% 80%, #fff 50%, transparent 51%),
+                radial-gradient(2px 2px at 90% 45%, #fff 50%, transparent 51%),
+                radial-gradient(1.5px 1.5px at 42% 12%, #fff 50%, transparent 51%),
+                radial-gradient(1.5px 1.5px at 65% 60%, #fff 50%, transparent 51%);
+        }
+        .xmas-inner {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1.05fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            padding: 3.6rem 0;
+        }
+        .xmas .eyebrow { background: rgba(255,255,255,0.14); color: #ffe2b8; }
+        .xmas h2 { font-size: clamp(2.1rem, 4.2vw, 3.1rem); color: #fff; margin-bottom: 1rem; }
+        .xmas h2 em { color: #ffcf96; font-style: italic; }
+        .xmas p { max-width: 32rem; font-size: 1.05rem; opacity: 0.92; }
+        .xmas-picks { display: grid; gap: 0.6rem; margin: 1.6rem 0 1.8rem; max-width: 30rem; }
+        .xmas-pick {
+            display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+            padding: 0.7rem 1rem; border-radius: 0.9rem; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+            text-decoration: none; color: #fff; transition: background 0.2s ease;
+        }
+        .xmas-pick:hover { background: rgba(255,255,255,0.14); }
+        .xmas-pick small { display: block; color: rgba(255,255,255,0.72); font-size: 0.82rem; }
+        .xmas-pick strong { font-family: var(--serif); font-size: 1.35rem; color: #ffcf96; white-space: nowrap; }
+        .xmas .btn-primary { background: #ffcf96; border-color: #ffcf96; color: #3b2a26; }
+        .xmas .btn-primary:hover { background: #ffe2b8; }
+        .xmas .btn-whatsapp { box-shadow: none; }
+        .xmas-photos { position: relative; height: 100%; min-height: 380px; }
+        .xmas-photos figure { position: absolute; overflow: hidden; border-radius: 1.4rem; box-shadow: 0 30px 60px rgba(0,0,0,0.35); border: 5px solid #fff; background: #fff; }
+        .xmas-photos img { width: 100%; height: 100%; object-fit: cover; }
+        .xmas-photos .p1 { width: 58%; aspect-ratio: 3 / 4; left: 0; top: 0; transform: rotate(-3deg); }
+        .xmas-photos .p2 { width: 52%; aspect-ratio: 3 / 4; right: 0; bottom: 0; transform: rotate(4deg); }
+        .xmas-photos .tag {
+            position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(-6deg);
+            background: #a3342c; color: #fff; border-radius: 999px; padding: 0.55rem 1.1rem; font-weight: 500; font-size: 0.92rem;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.3); white-space: nowrap; z-index: 2;
+        }
+        .xmas-luminho { position: absolute; right: -0.4rem; top: -0.6rem; width: 5rem; height: 5rem; border-radius: 50%; border: 4px solid #fff; overflow: hidden; z-index: 3; box-shadow: 0 10px 24px rgba(0,0,0,0.3); }
+        .xmas-luminho img { width: 100%; height: 100%; object-fit: cover; }
+        @media (max-width: 960px) {
+            .xmas-inner { grid-template-columns: 1fr; gap: 2.4rem; padding: 3rem 0; }
+            .xmas-photos { min-height: 0; height: auto; aspect-ratio: 5 / 4; max-width: 520px; width: 100%; margin: 0 auto; }
+        }
+
         /* ---------- Luminho ---------- */
         .luminho {
             display: grid;
@@ -650,12 +733,21 @@
 </head>
 <body>
 
+<div class="xmas-bar" data-xmas data-until="2026-12-26" role="region" aria-label="Campanha de Natal">
+    <div class="xmas-bar-inner">
+        <span>🎄 <strong>Natal Aroma Lume</strong> · Presentes feitos à mão em Viseu, a partir de 3,20 €</span>
+        <a href="loja/?filtro=natal">Ver presentes de Natal →</a>
+    </div>
+    <button class="xmas-bar-close" type="button" aria-label="Fechar aviso de Natal">&times;</button>
+</div>
+
 <header>
     <div class="wrap header-inner">
         <a href="#" class="logo" aria-label="Aroma Lume - início">
             <img src="1000007280-removebg-preview.png" alt="Aroma Lume" width="68" height="68">
         </a>
         <nav aria-label="Navegação principal">
+            <a href="#natal" data-xmas data-until="2026-12-26">🎄 Natal</a>
             <a href="#quem-somos">Quem Somos</a>
             <a href="#luminho">Luminho</a>
             <a href="#feiras">Feiras de Época</a>
@@ -692,6 +784,31 @@
                 <strong>Aroma. Luz. Memória.</strong>
                 <small>Cada vela é feita à mão, com atenção a cada detalhe.</small>
             </div>
+        </div>
+    </div>
+</section>
+
+<section class="xmas" id="natal" data-xmas data-until="2026-12-26" aria-label="Presentes de Natal">
+    <div class="wrap xmas-inner">
+        <div class="reveal">
+            <span class="eyebrow">Natal 2026 · Feito à mão em Viseu</span>
+            <h2>Este Natal, ofereça <em>luz e memória</em>.</h2>
+            <p>Velas artesanais em cera vegetal, embaladas e prontas para oferecer — para a família, o amigo secreto ou a equipa da sua empresa.</p>
+            <div class="xmas-picks">
+                <a class="xmas-pick" href="loja/?filtro=natal"><span>Kit Natal<small>Velas decorativas em caixa com laço</small></span><strong>8,00 €</strong></a>
+                <a class="xmas-pick" href="loja/?filtro=natal"><span>Caixa 4 Latas<small>Com frase surpresa ao acender</small></span><strong>14,90 €</strong></a>
+                <a class="xmas-pick" href="loja/?filtro=natal"><span>Lata<small>Lembrança e brinde de Natal</small></span><strong>3,20 €</strong></a>
+            </div>
+            <div class="cta-group">
+                <a href="loja/?filtro=natal" class="btn btn-primary">Ver presentes de Natal</a>
+                <a class="btn btn-whatsapp wa-link" data-msg="Olá Aroma Lume! Gostaria de encomendar presentes de Natal 🎄" href="https://wa.me/351927873574" target="_blank" rel="noopener">Encomendar pelo WhatsApp</a>
+            </div>
+        </div>
+        <div class="xmas-photos reveal" aria-hidden="true">
+            <figure class="p1"><img src="loja/fotos/kit-natal.jpg" alt="" loading="lazy"></figure>
+            <figure class="p2"><img src="loja/fotos/caixa-4-latas.jpg" alt="" loading="lazy"></figure>
+            <span class="tag">🎁 Prontos para oferecer</span>
+            <span class="xmas-luminho"><img src="img/luminho-avatar.jpg" alt=""></span>
         </div>
     </div>
 </section>
@@ -1542,6 +1659,23 @@
                 });
                 document.fonts.ready.then(draw);
             }
+        })();
+
+
+        // Campanha de Natal: esconder depois da data e permitir fechar a barra
+        (function () {
+            var today = new Date();
+            document.querySelectorAll("[data-xmas]").forEach(function (el) {
+                var until = new Date(el.getAttribute("data-until") + "T23:59:59");
+                if (today > until) el.classList.add("xmas-hidden");
+            });
+            var bar = document.querySelector(".xmas-bar");
+            if (!bar) return;
+            try { if (sessionStorage.getItem("xmas-bar-closed") === "1") bar.classList.add("xmas-hidden"); } catch (e) {}
+            bar.querySelector(".xmas-bar-close").addEventListener("click", function () {
+                bar.classList.add("xmas-hidden");
+                try { sessionStorage.setItem("xmas-bar-closed", "1"); } catch (e) {}
+            });
         })();
 
         // Formulário -> WhatsApp
