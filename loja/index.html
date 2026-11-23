@@ -485,6 +485,28 @@
         .xmas-hidden { display: none !important; }
         @media (max-width: 600px) { .xmas-bar { font-size: 0.8rem; } .xmas-bar-inner { padding: 0.5rem 2.4rem 0.5rem 0.9rem; gap: 0.3rem 0.6rem; } }
 
+        /* ---------- Natal: música ---------- */
+        .xmas-music {
+            position: fixed; left: 1.2rem; bottom: 1.2rem; z-index: 60;
+            display: inline-flex; align-items: center; gap: 0.55rem;
+            background: #2f5d4a; color: #fff; border: 2px solid #ffcf96; border-radius: 999px;
+            padding: 0.6rem 1rem 0.6rem 0.75rem; font: 500 0.86rem/1 var(--sans);
+            box-shadow: 0 10px 26px rgba(0,0,0,0.22); cursor: pointer; transition: transform 0.2s ease, background 0.2s ease;
+        }
+        .xmas-music:hover { transform: translateY(-2px); background: #3b6b55; }
+        .xmas-music .eq { display: inline-flex; align-items: flex-end; gap: 2px; height: 14px; width: 16px; }
+        .xmas-music .eq i { width: 3px; background: #ffcf96; border-radius: 2px; height: 30%; }
+        .xmas-music.playing .eq i { animation: eq 0.9s ease-in-out infinite; }
+        .xmas-music.playing .eq i:nth-child(2) { animation-delay: 0.2s; }
+        .xmas-music.playing .eq i:nth-child(3) { animation-delay: 0.4s; }
+        .xmas-music.playing .eq i:nth-child(4) { animation-delay: 0.1s; }
+        @keyframes eq { 0%, 100% { height: 25%; } 50% { height: 100%; } }
+        @media (prefers-reduced-motion: reduce) { .xmas-music.playing .eq i { animation: none; height: 70%; } }
+        @media (max-width: 600px) {
+            .xmas-music { left: 0.9rem; bottom: 1.1rem; padding: 0.6rem 0.75rem; }
+            .xmas-music .label { display: none; }
+        }
+
         /* ---------- Toast ---------- */
         .toast {
             position: fixed;
@@ -648,6 +670,12 @@
         </button>
     </div>
 </aside>
+
+<button type="button" class="xmas-music" id="xmasMusic" data-xmas data-until="2026-12-26" aria-pressed="false" aria-label="Tocar música de Natal (Jingle Bells em jazz)">
+    <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+    <span class="label">🎄 Jingle Bells (jazz)</span>
+</button>
+<audio id="xmasAudio" src="../audio/jingle-bells-jazz.mp3" preload="none" loop></audio>
 
 <a class="wa-float wa-link" data-msg="Olá Aroma Lume! Tenho uma dúvida sobre a loja online." href="https://wa.me/351927873574" target="_blank" rel="noopener" aria-label="Falar com o Luminho no WhatsApp">
     <span class="wa-bubble">Olá! Sou o <strong>Luminho</strong> 👋<br>Fale connosco no WhatsApp.</span>
@@ -984,6 +1012,33 @@ try { sessionStorage.setItem("xmas-bar-closed", "1"); } catch (e) {}
 try {
     if (NATAL_ATIVO && new URLSearchParams(location.search).get("filtro") === "natal") currentFilter = "Natal 🎄";
 } catch (e) { /* ignorar */ }
+
+
+// Música de Natal (só toca quando o visitante carrega no botão)
+(function () {
+    var btn = document.getElementById("xmasMusic");
+    var audio = document.getElementById("xmasAudio");
+    if (!btn || !audio) return;
+    audio.volume = 0.45;
+    function set(playing) {
+btn.classList.toggle("playing", playing);
+btn.setAttribute("aria-pressed", String(playing));
+btn.setAttribute("aria-label", playing ? "Pausar música de Natal" : "Tocar música de Natal (Jingle Bells em jazz)");
+btn.querySelector(".label").textContent = playing ? "🎄 A tocar · pausar" : "🎄 Jingle Bells (jazz)";
+    }
+    btn.addEventListener("click", function () {
+if (audio.paused) {
+    var p = audio.play();
+    if (p && p.catch) p.catch(function () { set(false); });
+    set(true);
+} else {
+    audio.pause();
+    set(false);
+}
+    });
+    audio.addEventListener("pause", function () { set(false); });
+    audio.addEventListener("play", function () { set(true); });
+})();
 
 loadCart();
 renderFilters();
