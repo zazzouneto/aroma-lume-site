@@ -215,6 +215,18 @@
             color: var(--muted); font-size: 0.85rem; letter-spacing: 0.06em;
         }
         .placeholder img { width: 55%; height: auto; opacity: 0.85; }
+        .old-price { color: var(--muted); font-weight: 400; font-size: 0.95rem; margin-right: 0.2rem; }
+        .promo { display: inline-block; vertical-align: middle; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.04em; background: #a3342c; color: #fff; border-radius: 999px; padding: 0.15rem 0.55rem; margin-left: 0.3rem; }
+        .product-card.featured { grid-column: span 2; flex-direction: row; border: 2px solid var(--accent); }
+        .product-card.featured .product-image { flex: 0 0 52%; aspect-ratio: auto; min-height: 100%; }
+        .product-card.featured .product-info { padding: 1.8rem; justify-content: center; }
+        .product-card.featured .product-title { font-size: 1.9rem; }
+        .product-card.featured .product-price { margin-top: 0.4rem; font-size: 1.6rem; }
+        @media (max-width: 600px) {
+            .product-card.featured { grid-column: auto; flex-direction: column; }
+            .product-card.featured .product-image { aspect-ratio: 1 / 1; min-height: 0; flex: none; }
+            .product-card.featured .product-info { padding: 1.2rem 1.3rem 1.4rem; }
+        }
         .product-price small { font-size: 0.8rem; color: var(--muted); font-weight: 400; }
         .tiers { list-style: none; padding: 0; margin: 0.1rem 0 0.3rem; font-size: 0.84rem;
             background: var(--bg); border-radius: 0.8rem; padding: 0.5rem 0.8rem; }
@@ -711,6 +723,9 @@ const NATAL_ATIVO = new Date() <= NATAL_ATE;
 /* tiers: preço por unidade conforme a quantidade total desse produto no carrinho
    [quantidade mínima, preço por unidade] */
 const products = [
+    { id: 13, name: "Kit Aconchego", price: 25.00, oldPrice: 28.99, category: "Kits", natal: true, featured: true,
+      desc: "Combinação de vela coração e vela lótus com base. A base pode ser enfeitada com fita e laço.",
+      image: "fotos/kit-aconchego-destaque.jpg" },
     { id: 11, name: "Vela Mini Afeto", price: 6.00, category: "Velas", isNew: true,
       desc: "Mini vela com etiqueta personalizada, ideal para lembranças.", image: "fotos/vela-mini-afeto.jpg" },
     { id: 12, name: "Kit Natal", natal: true, price: 8.00, category: "Kits", isNew: true,
@@ -808,15 +823,15 @@ function renderProducts() {
         : products.filter((p) => p.category === currentFilter);
     const options = ESSENCIAS.map((e) => `<option value="${esc(e)}">${esc(e)}</option>`).join("");
     $("productsGrid").innerHTML = list.map((p) => `
-        <article class="product-card">
+        <article class="product-card${p.featured ? " featured" : ""}">
             <div class="product-image">
                 ${imgHtml(p)}
-                <span class="product-tag">${esc(p.category)}</span>${p.isNew ? '<span class="product-tag new-tag">Novo</span>' : ""}
+                <span class="product-tag">${esc(p.category)}</span>${p.featured ? '<span class="product-tag new-tag">⭐ Destaque de Natal</span>' : p.isNew ? '<span class="product-tag new-tag">Novo</span>' : ""}
             </div>
             <div class="product-info">
                 <h3 class="product-title">${esc(p.name)}</h3>
                 ${p.desc ? `<p class="product-desc">${esc(p.desc)}</p>` : ""}
-                <div class="product-price">${p.tiers ? "desde " + fmt(p.tiers[p.tiers.length - 1][1]) + " <small>/un.</small>" : fmt(p.price)}</div>
+                <div class="product-price">${p.tiers ? "desde " + fmt(p.tiers[p.tiers.length - 1][1]) + " <small>/un.</small>" : p.oldPrice ? `<s class="old-price">${fmt(p.oldPrice)}</s> ${fmt(p.price)} <span class="promo">Promoção</span>` : fmt(p.price)}</div>
                 ${tiersHtml(p)}
                 <label for="ess-${p.id}">Essência</label>
                 <select id="ess-${p.id}" data-essence-for="${p.id}">
